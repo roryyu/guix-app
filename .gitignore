@@ -3,3 +3,6 @@ dist/
 artifacts/
 *.tsbuildinfo
 .DS_Store
+
+# Bun 编译生成的临时文件
+*.bun-build
