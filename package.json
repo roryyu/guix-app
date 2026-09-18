@@ -1,0 +1,37 @@
+{
+  "name": "guix-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "使用 GPUIX 构建的原生 GPU 图形实验室",
+  "scripts": {
+    "dev": "bun --hot src/main.tsx",
+    "start": "bun src/main.tsx",
+    "typecheck": "tsc --noEmit",
+    "build": "bun build --compile src/main.tsx --outfile dist/guix-app",
+    "test": "vitest run",
+    "test:live": "bun scripts/verify-live.ts",
+    "app:build": "bun scripts/package-macos.ts --target=gpuix",
+    "editor:build": "bun scripts/package-macos.ts --target=editor",
+    "editor:start": "bun scripts/package-macos.ts --target=editor --open",
+    "test:editor": "bun scripts/verify-editor.ts",
+    "package:app": "bun scripts/package-macos.ts --target=gpuix --dmg",
+    "package:editor": "bun scripts/package-macos.ts --target=editor --dmg",
+    "package:dmg": "bun scripts/package-macos.ts --dmg"
+  },
+  "dependencies": {
+    "@gpuix/native": "0.9.0",
+    "@gpuix/react": "0.9.0",
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.5",
+    "@types/react": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "bun": ">=1.3.5",
+    "node": ">=22"
+  }
+}

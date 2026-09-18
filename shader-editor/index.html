@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>GLSL Studio · Shader 编辑器</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9v14L16 30 3 23V9Z"/><path d="m16 10 6 3v7l-6 3-6-3v-7Z"/></svg>
+        <div><h1>GLSL <span>STUDIO</span></h1><p>实时着色器实验室</p></div>
+      </div>
+      <div class="status"><i id="status-dot"></i><span id="status">正在初始化 WebGL…</span></div>
+    </header>
+    <main class="main">
+      <section class="stage" aria-label="着色器预览">
+        <div class="canvas-wrap">
+          <canvas id="gl" aria-label="实时 WebGL 画布"></canvas>
+          <span class="hud live" id="live">LIVE / NEBULA</span>
+          <div class="hud telemetry"><span id="resolution">— × —</span><span id="fps">— FPS</span><span id="time">0.00 s</span></div>
+        </div>
+        <div class="dock">
+          <div class="transport">
+            <button id="play" class="play" aria-label="暂停" title="播放 / 暂停">Ⅱ</button>
+            <span>时间控制</span>
+            <div class="presets" aria-label="Shader 预设">
+              <button data-preset="nebula" aria-pressed="true">NEBULA</button>
+              <button data-preset="grid" aria-pressed="false">GRID</button>
+              <button data-preset="wave" aria-pressed="false">WAVE</button>
+            </div>
+          </div>
+          <div class="sliders">
+            <label for="speed">SPEED<input id="speed" type="range" min="0" max="3" step="0.1" value="1" /><output for="speed" id="speed-value">1.0x</output></label>
+            <label for="scale">SCALE<input id="scale" type="range" min="1" max="60" step="0.1" value="28" /><output for="scale" id="scale-value">28.0</output></label>
+            <label for="iterations">ITER<input id="iterations" type="range" min="1" max="40" step="1" value="17" /><output for="iterations" id="iterations-value">17</output></label>
+            <label for="detail">DETAIL<input id="detail" type="range" min="1" max="60" step="1" value="27" /><output for="detail" id="detail-value">27</output></label>
+          </div>
+        </div>
+        <p class="stage-note">WebGL 1.0 / GLSL ES 1.0 <span>本地运行 · 无远程依赖</span></p>
+      </section>
+      <div id="resizer" role="separator" aria-label="调整编辑器宽度" aria-orientation="vertical" tabindex="0"></div>
+      <section class="editor" aria-label="Shader 源码编辑">
+        <div class="editor-head">
+          <div class="tabs" role="tablist" aria-label="Shader 类型">
+            <button id="tab-fragment" role="tab" aria-selected="true" aria-controls="code">FRAGMENT</button>
+            <button id="tab-vertex" role="tab" aria-selected="false" aria-controls="code">VERT</button>
+          </div>
+          <span class="badge">SHADERTOY</span>
+        </div>
+        <div class="editor-tools">
+          <label><input type="checkbox" id="auto" checked /> 自动编译</label>
+          <button id="run" class="run">编译运行 <kbd>⌘ ↵</kbd></button>
+        </div>
+        <div class="code-area">
+          <pre id="lines" aria-hidden="true">1</pre>
+          <textarea id="code" aria-label="Fragment Shader 源码" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"></textarea>
+        </div>
+        <div class="editor-meta"><span id="position">1 行</span><span>Tab 缩进 · ⌘S / Ctrl+Enter 编译</span></div>
+        <div class="console-head"><span>编译输出</span><button id="restore">恢复当前预设</button></div>
+        <pre id="console" role="status" aria-live="polite">等待初始化…</pre>
+        <div class="uniform-note">自动注入 iResolution / iTime / iMouse 等 uniform。iChannel0–3 为黑色占位纹理；不支持 Buffer 多通道、音频和 GLSL 300 es。</div>
+      </section>
+    </main>
+    <footer>GUIX APP <span>GLSL STUDIO / 系统 WebKit 独立窗口，非 GPUIX Shader 后端</span></footer>
+  </div>
+</body>
+</html>
