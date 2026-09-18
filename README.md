@@ -274,13 +274,15 @@ npm run test:live -- "--app=$PWD/dist/macos/GPUIX Lab.app"
 本地已验证：类型检查、23 项测试、编辑器常规 / 最小窗口，以及两个 DMG 挂载后的应用运行。其他操作系统和 Intel Mac 未在本项目中完成验证。
 
 截图在运行对应测试后生成：
-- [GLSL 编辑器](artifacts/editor-webkit.png)
-- [GLSL 编辑器最小窗口](artifacts/editor-webkit-small.png)
-- [GPUIX 几何场景](artifacts/live-geometry.png)
-- [GPUIX 图表场景](artifacts/live-chart.png)
-- [GPUIX SVG 场景](artifacts/live-vector.png)
+![GLSL 编辑器](artifacts/editor-webkit.png)
 
-`artifacts/` 不纳入版本管理，新检出的工程需要先运行测试才会出现这些文件。
+![GLSL 编辑器最小窗口](artifacts/editor-webkit-small.png)
+
+![GPUIX 几何场景](artifacts/live-geometry.png)
+
+![GPUIX 图表场景](artifacts/live-chart.png)
+
+![GPUIX SVG 场景](artifacts/live-vector.png)
 
 ## 常见问题
 
